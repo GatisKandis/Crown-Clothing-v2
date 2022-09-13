@@ -3,7 +3,7 @@ import './category-item.style.scss'
 
 const CategoryItem = ({Category}) => {
 
-  console.log({Category});
+  
   const {title,imageUrl} = Category;
   return (
     
