@@ -2,16 +2,30 @@
 
 import {
   signInWithGooglePopup,
-  createUserDocFromAuth
+  signInWithGithubPopup,
+  selectAuthenticate
 } from "../../utils/firebase/firebase.utils";
 
 const SignIn = () => {
   const logGoogleUser = async () => {
 
-    const {user} = await signInWithGooglePopup();
+    const response = await selectAuthenticate('google');
 
-    createUserDocFromAuth(user);
+    console.log(response);
+    // const user = response.user;
+    // const datas = {
+    //   accessToken: user.accessToken,
+    //   name: user.displayName,
+    //   email: user.email,
+    // };
   }  
+
+  const logGithubUser = async () => {
+
+    const response = await selectAuthenticate('github');
+
+    console.log(response);
+  }
 
   return (
     <div>
@@ -27,7 +41,7 @@ const SignIn = () => {
       </div>
       <h2>- or - </h2>
       <button onClick={logGoogleUser}>Sign in with Google Popup</button>
-      {/* <button onClick={logGithubUser}>Sign in with GitHub Popup</button> */}
+      <button onClick={logGithubUser}>Sign in with GitHub Popup</button>
     </div>
   );
 };
