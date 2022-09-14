@@ -43,8 +43,6 @@ export const createUserDocFromAuth = async (userAuth) => {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
-
-
     try {
       await setDoc(userAuthRef, {
         displayName,
