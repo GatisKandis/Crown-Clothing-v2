@@ -1,47 +1,16 @@
-import "./navigation.style.scss";
 import { Fragment } from "react";
 
-import { Outlet, Link } from "react-router-dom";
-import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
+import { Outlet , Link} from "react-router-dom";
 
 const Navigation = () => {
-  const nav = [
-    {
-      id: 1,
-      label: "SHOP",
-      route: "/shop",
-    },
-    {
-      id: 2,
-      label: "CONTACT",
-      route: "/contact",
-    },
-    {
-      id: 3,
-      label: "SIGN IN",
-      route: "/sign-in",
-    },
-    {
-      id: 4,
-      label: "CART",
-      route: "/cart",
-    },
-  ];
-
   return (
     <Fragment>
-      <div className="navigation">
-        <Link className="logoContainer" to="/">
-          <CrownLogo className="logo" />
-        </Link>
+      <div className="Nav-bar">
+        <div></div>
         <div className="nav-link-container">
-          {nav.map(({ id, label, route }) => (
-            <Link className="nav-link" key={id} to={route}>
-              {label}
-            </Link>
-          ))}
-          
+          <Link className="nav-link" to='/shop'>Shop</Link>
         </div>
+        
       </div>
       <Outlet />
     </Fragment>
