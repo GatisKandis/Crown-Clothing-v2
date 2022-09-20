@@ -7,8 +7,6 @@ import {
   GithubAuthProvider,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-
 const firebaseConfig = {
   apiKey: "AIzaSyCtAV1tT8UifkAJ_eBAGeFVd68c6MDGhM4",
   authDomain: "crown-clothing-db-5361b.firebaseapp.com",
@@ -21,38 +19,20 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
+const googleProvider = new GoogleAuthProvider();
+const GitHubprovider = new GithubAuthProvider();
 
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+GitHubprovider.setCustomParameters({
+  prompt: "select_account",
+});
 
-export const db = getFirestore();
+export const auth = getAuth();
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
 
-export const createUserDocFromAuth = async (userAuth) => {
-  const userAuthRef = doc(db, "users", userAuth.uid);
-
-  const userSnapShot = await getDoc(userAuthRef);
-
-  console.log(userSnapShot.exists());
-
-  if (!userSnapShot.exists()) {
-    const { displayName, email } = userAuth;
-    const createdAt = new Date();
-
-    try {
-      await setDoc(userAuthRef, {
-        displayName,
-        email,
-        createdAt,
-      });
-    } catch (error) {
-      console.log("error creating the user:", error.message);
-    }
-  }
-
-  return userAuthRef;
-};
+export const signInWithGithubPopup = () =>
+  signInWithPopup(auth, GitHubprovider);
