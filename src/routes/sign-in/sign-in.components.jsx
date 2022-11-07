@@ -1,4 +1,6 @@
 // import { Fragment } from "react";
+import mainLogo from '../../assets/google.png';
+import './sign-in.style.scss';
 
 import {
   signInWithGooglePopup,
@@ -30,7 +32,6 @@ const SignIn = () => {
       <h1>Sign In</h1>
       <div>
         <form action="">
-          
           <input type="text" id="username" name="username" placeholder="Username"/>
           <input type="password" id="password" name="password" placeholder="Password"/>
           <input type="submit" value="login" />
@@ -38,8 +39,7 @@ const SignIn = () => {
         <br></br>
       </div>
       <h2>- or - </h2>
-      <button onClick={logGoogleUser}>Sign in with Google Popup</button>
-      <button onClick={logGitHub}>Sign in with GitHub Popup</button>
+      <button onClick={logGoogleUser}><span><p>Sign in with</p>  <img src={mainLogo} alt='google'/></span></button>
     </div>
   );
 };

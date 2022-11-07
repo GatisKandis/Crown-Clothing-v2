@@ -1,6 +1,9 @@
 import { Fragment } from "react";
 import { useTable } from "react-table";
 
+import './table.style.scss';
+
+
 const TableFormat = ({ columns, data }) => {
   const tableInstance = useTable({ columns, data });
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -10,13 +13,18 @@ const TableFormat = ({ columns, data }) => {
     <>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => {
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => {
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>;
+          {headerGroups.map((headerGroups) => {
+            return (
+            <tr {...headerGroups.getHeaderGroupProps()}>
+              {headerGroups.headers.map((column) => {
+                return (
+                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                );
               })}
-            </tr>;
+            </tr>
+            );  
           })}
+          
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row) => {
@@ -25,9 +33,11 @@ const TableFormat = ({ columns, data }) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
-                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                  return (
+                  <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  );
                 })}
-                ;
+                
               </tr>
             );
           })}

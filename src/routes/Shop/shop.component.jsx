@@ -38,7 +38,7 @@ const Shop = () => {
   return (
     <>
       <h1>User</h1>
-      <DtPicker />
+      {/* <DtPicker /> */}
       <input type="text" name="searchbox" id="search" />
       <TableFormat columns={columns} data={data} />
     </>
